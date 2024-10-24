@@ -11,7 +11,7 @@ namespace Mandatory2DGameFramework
     {
         private const string logname = "GAMELOG";
 
-        public void Start()
+        public void StartGamelog()
         {
             TraceSource tSource = new TraceSource(logname);
             tSource.Switch = new SourceSwitch(logname, SourceLevels.Information.ToString());
