@@ -7,15 +7,20 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.defence
 {
-    public class DefenceItem:WorldObject
+    public class DefenceItem : WorldObject
     {
         public string Name { get; set; }
         public int ReduceHitPoint { get; set; }
-
-        public DefenceItem()
+        /// <summary>
+        /// Defence constructor
+        /// </summary>
+        /// <param name="name">Defence name</param>
+        /// <param name="reducehp">Amount of damage the defence item repels</param>
+        public DefenceItem(string name,
+                           int reducehp)
         {
-            Name = string.Empty;
-            ReduceHitPoint = 0;
+            Name = name;
+            ReduceHitPoint = reducehp;
         }
 
         public override string ToString()

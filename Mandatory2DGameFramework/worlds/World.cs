@@ -12,10 +12,7 @@ namespace Mandatory2DGameFramework.worlds
         public int MaxX { get; set; }
         public int MaxY { get; set; }
 
-
-        // world objects
         private List<WorldObject> _worldObjects;
-        // world creatures
         private List<Creature> _creatures;
 
         public World(int maxX, int maxY)

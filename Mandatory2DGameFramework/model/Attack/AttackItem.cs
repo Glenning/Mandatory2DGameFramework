@@ -9,15 +9,22 @@ namespace Mandatory2DGameFramework.model.attack
 {
     public class AttackItem : WorldObject
     {
-        public string  Name { get; set; }
+        public string Name { get; set; }
         public int Hit { get; set; }
         public int Range { get; set; }
-
-        public AttackItem()
+        /// <summary>
+        /// Weapon constructor
+        /// </summary>
+        /// <param name="name">Weapon name</param>
+        /// <param name="hit">Weapon damage</param>
+        /// <param name="range">Weapon range</param>
+        public AttackItem(string name,
+                          int hit,
+                          int range)
         {
-            Name = string.Empty;
-            Hit = 0;
-            Range = 0;
+            Name = name;
+            Hit = hit;
+            Range = range;
         }
 
         public override string ToString()
