@@ -9,13 +9,15 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using Mandatory2DGameFramework.model.CreatureState;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public class Creature : INotifyPropertyChanged
+    public class Creature : WorldObject, INotifyPropertyChanged, ICreatureState
     {
         public string Name { get; set; }
         public int HitPoint { get; set; }
+        public ICreatureState CreatureState { get; set; }
 
         public AttackItem? AttackItem { get; set; }
         public DefenceItem? DefenceItem { get; set; }
@@ -39,29 +41,47 @@ namespace Mandatory2DGameFramework.model.Cretures
                 if (value == HitPoint) return;
                 HitPoint = value;
                 NotifyPropertyChanged("HP");
+                CreatureState = new AliveState();
             }
+        }
+        public void ChangeState(ICreatureState state)
+        {
+            CreatureState = state;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
+        
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "") //CallerMemberName allows for the HP variable to be saved as propertyName
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public int Hit()
+        public void ReceiveHit(int damage)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void ReceiveHit(int hit)
+        public void SendHit(Creature opponent)
         {
-            throw new NotImplementedException();
+            
         }
+        //public void Hit(Creature opponent)
+        //{
+        //    Creature.SendHit(this, opponent);
+        //}
+
+        //public void ReceiveHit(int damagetaken)
+        //{
+        //    int damReduction = DefenceItem.Sum(defence => defence.reducehp);
+        //    //Creature.ReceiveHit(this, damagetaken);
+        //}
 
         public void Death()
         {
-
+            if (HitPoint <= 0)
+            {
+                Console.WriteLine($"{Name} has died");
+                //Do some cleanup here that removes the creature from the game
+            }
         }
         /// <summary>
         /// Checks availability of looting
@@ -72,7 +92,7 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             if (obj.Lootable == false)
             {
-                throw new ArgumentException("You can not loot that!");
+                Console.WriteLine("You can not loot that!");
             }
             else
             {
