@@ -50,19 +50,19 @@ namespace Mandatory2DGameFramework.model.Cretures
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        
+
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "") //CallerMemberName allows for the HP variable to be saved as propertyName
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public void ReceiveHit(int damage)
         {
-            
+
         }
 
         public void SendHit(Creature opponent)
         {
-            
+
         }
         //public void Hit(Creature opponent)
         //{

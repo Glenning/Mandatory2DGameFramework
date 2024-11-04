@@ -10,6 +10,11 @@ namespace Mandatory2DGameFramework.model.CreatureState
 {
     public class AliveState : ICreatureState
     {
+        /// <summary>
+        /// Calculates the reduction of HP when a creature is hit, taking the DefenceItem into account
+        /// </summary>
+        /// <param name="creature">The creature that gets hit</param>
+        /// <param name="damage">Raw damage w/o DefenceItem</param>
         public void ReceiveHit(Creature creature, int damage)
         {
             int reduceDam = damage - creature.DefenceItem.ReduceHitPoint;

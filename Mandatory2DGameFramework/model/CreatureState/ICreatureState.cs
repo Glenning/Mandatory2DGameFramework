@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.CreatureState
 {
-    public interface ICreatureState
+    private interface ICreatureState
     {
         void ReceiveHit(Creature creature, int damage);
         void SendHit(Creature creature, Creature opponent);
