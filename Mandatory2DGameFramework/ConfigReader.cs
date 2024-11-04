@@ -22,15 +22,35 @@ namespace Mandatory2DGameFramework
         }
 
         /// <summary>
-        /// Singleton instance of the Config Reader
+        /// Ensure singleton initialization of the config reader
         /// </summary>
-        /// <param name="path">Filepath of the XML</param>
+        public static ConfigReader Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    throw new InvalidOperationException("An instance of ConfigReader has not been initialized");
+                }
+                return instance;
+            }
+        }
+
+        /// <summary>
+        /// Ensure singleton initialization of the config reader
+        /// </summary>
+        /// <param name="path">Filepath for the XML</param>
         public static void Initialize(string path)
         {
             if (instance == null)
             {
                 instance = new ConfigReader(path);
             }
+        }
+
+        public XDocument ReturnConfig()
+        {
+            return xmlConfig;
         }
     }
 }
