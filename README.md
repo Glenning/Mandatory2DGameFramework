@@ -4,3 +4,8 @@ How do I deal with creatures with no HP?
   - Make a separate list for dead creatures
   - INotifyPropertyChanged to observe HP
   - States
+Xml Config
+  - XmlDocument, older and we learned about it
+  - XDocument, newer, LINQ, can be simpler (most importantly it allows me to fulfill another assignment requirement)
+Logger
+  - What should be logged?
