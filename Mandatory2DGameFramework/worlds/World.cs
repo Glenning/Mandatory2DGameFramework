@@ -23,11 +23,6 @@ namespace Mandatory2DGameFramework.worlds
             _creatures = new List<Creature>();
         }
 
-        private void FightObserver()
-        {
-            
-        }
-
         public override string ToString()
         {
             return $"{{{nameof(MaxX)}={MaxX.ToString()}, {nameof(MaxY)}={MaxY.ToString()}}}";

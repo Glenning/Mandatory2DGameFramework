@@ -11,12 +11,12 @@ namespace Mandatory2DGameFramework.model.CreatureState
     {
         public void ReceiveHit(Creature creature, int damage)
         {
-            throw new ArgumentOutOfRangeException($"{creature.Name} is dead");
+            Console.WriteLine($"{creature.CreatureName} is dead");
         }
 
-        public void SendHit(Creature creature, Creature opponent)
+        public void Attack(Creature creature, Creature opponent)
         {
-            throw new ArgumentOutOfRangeException($"{creature.Name} is dead");
+            Console.WriteLine($"{creature.CreatureName} is dead");
         }
     }
 }

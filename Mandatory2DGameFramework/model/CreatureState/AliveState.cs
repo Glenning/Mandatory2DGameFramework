@@ -19,7 +19,7 @@ namespace Mandatory2DGameFramework.model.CreatureState
         {
             int reduceDam = damage - creature.DefenceItem.ReduceHitPoint;
             creature.HitPoint -= reduceDam;
-            Console.WriteLine($"{creature.Name} gets hit for {reduceDam} damage and has {creature.HitPoint} remaining!");
+            Console.WriteLine($"{creature.CreatureName} gets hit for {reduceDam} damage and has {creature.HitPoint} remaining!");
 
             if (creature.HitPoint <= 0 ) 
             {
@@ -27,9 +27,23 @@ namespace Mandatory2DGameFramework.model.CreatureState
             }
         }
 
-        public void SendHit(Creature attacker, Creature opponent)
+        public void Attack(Creature attacker, Creature opponent)
         {
-            
+            int attack = attacker.AttackItem.HitDamage();
+            Console.WriteLine($"{attacker.CreatureName} hits {opponent.CreatureName} for {attack} damage!");
+            opponent.Attack(attack);
+
+            if (opponent.HitPoint <= 0 )
+            {
+                opponent.ChangeState(new DeadState());
+                Console.WriteLine($"{attacker.CreatureName} has defeated {opponent.CreatureName}!");
+            }
+
+            if (attacker.AttackItem == null)
+            {
+                Console.WriteLine($"{attacker.Name} does not have a weapon!");
+                return;
+            }
         }
     }
 }

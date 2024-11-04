@@ -13,14 +13,14 @@ using Mandatory2DGameFramework.model.CreatureState;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public class Creature : WorldObject, INotifyPropertyChanged, ICreatureState
+    public class Creature : WorldObject, ICreatureState
     {
-        public string Name { get; set; }
+        public string CreatureName { get; set; }
         public int HitPoint { get; set; }
         public ICreatureState CreatureState { get; set; }
 
-        public AttackItem? AttackItem { get; set; }
-        public DefenceItem? DefenceItem { get; set; }
+        public AttackItem AttackItem { get; set; }
+        public DefenceItem DefenceItem { get; set; }
         /// <summary>
         /// Creature constructor
         /// </summary>
@@ -29,7 +29,7 @@ namespace Mandatory2DGameFramework.model.Cretures
         public Creature(string creaturename,
                         int hp)
         {
-            Name = creaturename;
+            CreatureName = creaturename;
             HitPoint = hp;
         }
 
@@ -40,7 +40,6 @@ namespace Mandatory2DGameFramework.model.Cretures
             {
                 if (value == HitPoint) return;
                 HitPoint = value;
-                NotifyPropertyChanged("HP");
                 CreatureState = new AliveState();
             }
         }
@@ -49,40 +48,16 @@ namespace Mandatory2DGameFramework.model.Cretures
             CreatureState = state;
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "") //CallerMemberName allows for the HP variable to be saved as propertyName
+        public void ReceiveHit(Creature creature, int attack)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public void ReceiveHit(int damage)
-        {
-
+            CreatureState.ReceiveHit(this, attack);
         }
 
-        public void SendHit(Creature opponent)
+        public void Attack(Creature creature, Creature opponent)
         {
-
+            CreatureState.Attack(this, opponent);
         }
-        //public void Hit(Creature opponent)
-        //{
-        //    Creature.SendHit(this, opponent);
-        //}
 
-        //public void ReceiveHit(int damagetaken)
-        //{
-        //    int damReduction = DefenceItem.Sum(defence => defence.reducehp);
-        //    //Creature.ReceiveHit(this, damagetaken);
-        //}
-
-        public void Death()
-        {
-            if (HitPoint <= 0)
-            {
-                Console.WriteLine($"{Name} has died");
-                //Do some cleanup here that removes the creature from the game
-            }
-        }
         /// <summary>
         /// Checks availability of looting
         /// </summary>
@@ -97,13 +72,17 @@ namespace Mandatory2DGameFramework.model.Cretures
             else
             {
                 Console.WriteLine($"You have acquired: {obj.Name}");
-                //add some stuff here about it being added to your inv
             }
         }
 
         public override string ToString()
         {
-            return $"{{{nameof(Name)}={Name}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(AttackItem)}={AttackItem}, {nameof(DefenceItem)}={DefenceItem}}}";
+            return $"{{{nameof(CreatureName)}={CreatureName}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(AttackItem)}={AttackItem}, {nameof(DefenceItem)}={DefenceItem}}}";
+        }
+
+        internal void Attack(int attack) //need to ask why this is required when I already have the other void attack
+        {
+            throw new NotImplementedException();
         }
     }
 }
