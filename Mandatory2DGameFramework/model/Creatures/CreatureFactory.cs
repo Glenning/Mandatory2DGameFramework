@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.Creatures
 {
+    public enum CreatureType
+    {
+        Warrior,
+        Beast,
+        Boss
+    }
+
     public class CreatureFactory
     {
-        public enum CreatureType
-        {
-            Warrior,
-            Beast,
-            Boss
-        }
         /// <summary>
         /// Creating the standard variant of each creature along with the default "Grunt" type
         /// </summary>

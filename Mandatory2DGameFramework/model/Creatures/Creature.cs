@@ -13,14 +13,14 @@ using Mandatory2DGameFramework.model.CreatureState;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public class Creature : WorldObject, ICreatureState
+    public class Creature : WorldObject
     {
         public string CreatureName { get; set; }
         public int HitPoint { get; set; }
-        public ICreatureState CreatureState { get; set; }
-
         public AttackItem AttackItem { get; set; }
         public DefenceItem DefenceItem { get; set; }
+        private ICreatureState CreatureState { get; set; }
+
         /// <summary>
         /// Creature constructor
         /// </summary>
@@ -31,29 +31,31 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             CreatureName = creaturename;
             HitPoint = hp;
+            CreatureState = new AliveState();
         }
 
-        public int HP
-        {
-            get => HitPoint;
-            set
-            {
-                if (value == HitPoint) return;
-                HitPoint = value;
-                CreatureState = new AliveState();
-            }
-        }
+        //public int HP
+        //{
+        //    get => HitPoint;
+        //    set
+        //    {
+        //        if (value == HitPoint) return;
+        //        HitPoint = value;
+        //        CreatureState = new AliveState();
+        //    }
+        //}
+
         public void ChangeState(ICreatureState state)
         {
             CreatureState = state;
         }
 
-        public void ReceiveHit(Creature creature, int attack)
+        public void ReceiveHit(int attack) //It wants me to have this despite already using ReceiveHit?
         {
             CreatureState.ReceiveHit(this, attack);
         }
 
-        public void Attack(Creature creature, Creature opponent)
+        public void Attack(Creature opponent)
         {
             CreatureState.Attack(this, opponent);
         }
@@ -78,11 +80,6 @@ namespace Mandatory2DGameFramework.model.Cretures
         public override string ToString()
         {
             return $"{{{nameof(CreatureName)}={CreatureName}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(AttackItem)}={AttackItem}, {nameof(DefenceItem)}={DefenceItem}}}";
-        }
-
-        internal void Attack(int attack) //need to ask why this is required when I already have the other void attack
-        {
-            throw new NotImplementedException();
         }
     }
 }

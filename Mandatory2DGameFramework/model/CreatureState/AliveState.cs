@@ -31,7 +31,7 @@ namespace Mandatory2DGameFramework.model.CreatureState
         {
             int attack = attacker.AttackItem.HitDamage();
             Console.WriteLine($"{attacker.CreatureName} hits {opponent.CreatureName} for {attack} damage!");
-            opponent.Attack(attack);
+            opponent.ReceiveHit(attack);
 
             if (opponent.HitPoint <= 0 )
             {
