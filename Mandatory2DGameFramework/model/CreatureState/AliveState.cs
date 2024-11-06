@@ -27,6 +27,11 @@ namespace Mandatory2DGameFramework.model.CreatureState
             }
         }
 
+        /// <summary>
+        /// Method allowing creatures to attack each other
+        /// </summary>
+        /// <param name="attacker">Creature performing attack action</param>
+        /// <param name="opponent">Creature getting attacked</param>
         public void Attack(Creature attacker, Creature opponent)
         {
             int attack = attacker.AttackItem.HitDamage();

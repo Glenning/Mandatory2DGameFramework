@@ -45,12 +45,12 @@ namespace Mandatory2DGameFramework.model.Cretures
         //    }
         //}
 
-        public void ChangeState(ICreatureState state)
+        public void ChangeState(ICreatureState changedState)
         {
-            CreatureState = state;
+            CreatureState = changedState;
         }
 
-        public void ReceiveHit(int attack) //It wants me to have this despite already using ReceiveHit?
+        public void ReceiveHit(int attack)
         {
             CreatureState.ReceiveHit(this, attack);
         }

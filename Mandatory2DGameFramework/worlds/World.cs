@@ -24,6 +24,8 @@ namespace Mandatory2DGameFramework.worlds
             (MaxX, MaxY) = conf.ConfigWorld();
             _worldObjects = new List<WorldObject>();
             _creatures = new List<Creature>();
+
+            conf.ConfigCreatures(this);
         }
 
         public override string ToString()

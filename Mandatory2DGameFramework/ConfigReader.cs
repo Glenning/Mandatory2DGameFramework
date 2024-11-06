@@ -79,15 +79,18 @@ namespace Mandatory2DGameFramework
             }
         }
 
-        //public void ConfigCreatures(World world) maybe not worth configuring xml for creatures
-        //{
-        //    foreach (var creature in xmlConfig.Descendants("Creature"))
-        //    {
-        //        string name = creature.Element("CreatureName").Value;
-        //        string type = creature.Element("Type").Value;
-        //        int hitpoint = int.Parse(creature.Element("HitPoint").Value);
-        //        Creature addCreature = new Creature(name, type, hitpoint);
-        //    }
-        //}
+        /// <summary>
+        /// Configuration of Creatures via XML file
+        /// </summary>
+        /// <param name="world">Current game world</param>
+        public void ConfigCreatures(World world) //maybe not worth configuring xml for creatures
+        {
+            foreach (var creature in xmlConfig.Descendants("Creature"))
+            {
+                string name = creature.Element("CreatureName").Value;
+                int hitpoint = int.Parse(creature.Element("HitPoint").Value);
+                Creature addCreature = new Creature(name, hitpoint);
+            }
+        }
     }
 }
