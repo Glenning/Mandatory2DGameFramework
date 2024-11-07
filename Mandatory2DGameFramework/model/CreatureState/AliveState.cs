@@ -34,7 +34,7 @@ namespace Mandatory2DGameFramework.model.CreatureState
         /// <param name="opponent">Creature getting attacked</param>
         public void Attack(Creature attacker, Creature opponent)
         {
-            int attack = attacker.AttackItem.HitDamage();
+            int attack = attacker.AttackItem.AttackDmg();
             Console.WriteLine($"{attacker.CreatureName} hits {opponent.CreatureName} for {attack} damage!");
             opponent.ReceiveHit(attack);
 

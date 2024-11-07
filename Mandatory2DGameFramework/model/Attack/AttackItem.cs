@@ -32,7 +32,7 @@ namespace Mandatory2DGameFramework.model.attack
             return $"{{{nameof(Name)}={Name}, {nameof(Hit)}={Hit.ToString()}, {nameof(Range)}={Range.ToString()}}}";
         }
 
-        public int HitDamage()
+        internal int AttackDmg()
         {
             return Hit;
         }

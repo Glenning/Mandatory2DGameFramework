@@ -34,30 +34,39 @@ namespace Mandatory2DGameFramework.model.Cretures
             CreatureState = new AliveState();
         }
 
-        //public int HP
-        //{
-        //    get => HitPoint;
-        //    set
-        //    {
-        //        if (value == HitPoint) return;
-        //        HitPoint = value;
-        //        CreatureState = new AliveState();
-        //    }
-        //}
-
         public void ChangeState(ICreatureState changedState)
         {
             CreatureState = changedState;
         }
 
+        /// <summary>
+        /// Method for subtracting the amount a creature gets attacked for, from the creature's HP
+        /// </summary>
+        /// <param name="attack">Attack damage</param>
         public void ReceiveHit(int attack)
         {
             CreatureState.ReceiveHit(this, attack);
         }
 
+        /// <summary>
+        /// Method for attacking
+        /// </summary>
+        /// <param name="opponent">The victim of the attack</param>
         public void Attack(Creature opponent)
         {
             CreatureState.Attack(this, opponent);
+        }
+
+        /// <summary>
+        /// Method that changes the state of the creature to dead if HP <= 0
+        /// </summary>
+        public void Death()
+        {
+            if (HitPoint <= 0)
+            {
+                Console.WriteLine($"{CreatureName} has died.");
+                ChangeState(new DeadState());
+            }
         }
 
         /// <summary>

@@ -26,7 +26,8 @@ namespace Mandatory2DGameFramework
 
             tSource.Listeners.Add(new XmlWriterTraceListener($"{logname}.xml"));
 
-            tSource.TraceEvent(TraceEventType.Information, 700, "Message: Something went wrong");
+            tSource.TraceEvent(TraceEventType.Error, 700, "Message: Something went wrong");
+            tSource.TraceEvent(TraceEventType.Critical, 700, "Message: Critical error occurred");
             tSource.Close();
         }
     }
