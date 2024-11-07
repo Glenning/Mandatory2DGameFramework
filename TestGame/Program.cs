@@ -1,12 +1,13 @@
-﻿using Mandatory2DGameFramework;
-using Mandatory2DGameFramework.model.Creatures;
+﻿using Mandatory2DGameFramework.model.Creatures;
 using Mandatory2DGameFramework.model.Cretures;
-using static Mandatory2DGameFramework.model.Creatures.CreatureFactory;
 
-Console.WriteLine("This is a test environment ");
+Console.WriteLine("This is a test environment");
 
 Creature Krigeren = CreatureFactory.MakeCreature(CreatureType.Warrior);
 Creature Modstanderen = CreatureFactory.MakeCreature(CreatureType.Beast);
+
+Console.WriteLine($"{Krigeren.CreatureName} ready for battle with his {Krigeren.AttackItem.Name} doing {Krigeren.AttackItem.Hit} damage and his defence item: {Krigeren.DefenceItem.Name}, shielding him from {Krigeren.DefenceItem.ReduceHitPoint} damage!");
+Console.WriteLine($"{Modstanderen.CreatureName} ready for battle with his {Modstanderen.AttackItem.Name} doing {Modstanderen.AttackItem.Hit} damage and his defence item: {Modstanderen.DefenceItem.Name}, shielding him from {Modstanderen.DefenceItem.ReduceHitPoint} damage!");
 
 while (Krigeren.HitPoint > 0 && Modstanderen.HitPoint > 0)
 {

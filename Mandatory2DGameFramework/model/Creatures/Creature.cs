@@ -20,6 +20,7 @@ namespace Mandatory2DGameFramework.model.Cretures
         public AttackItem AttackItem { get; set; }
         public DefenceItem DefenceItem { get; set; }
         private ICreatureState CreatureState { get; set; }
+        private static readonly MyLogger DeathLogger = MyLogger.Instance;
 
         /// <summary>
         /// Creature constructor
@@ -34,6 +35,10 @@ namespace Mandatory2DGameFramework.model.Cretures
             CreatureState = new AliveState();
         }
 
+        /// <summary>
+        /// Method that allows for the creature to change states from alive to dead and vice versa
+        /// </summary>
+        /// <param name="changedState">The state after calling ChangeState()</param>
         public void ChangeState(ICreatureState changedState)
         {
             CreatureState = changedState;
@@ -66,6 +71,7 @@ namespace Mandatory2DGameFramework.model.Cretures
             {
                 Console.WriteLine($"{CreatureName} has died.");
                 ChangeState(new DeadState());
+                DeathLogger.LogInfo($"{CreatureName} has died at {DateTime.Now}");
             }
         }
 
@@ -73,7 +79,6 @@ namespace Mandatory2DGameFramework.model.Cretures
         /// Checks availability of looting
         /// </summary>
         /// <param name="obj">Name of the object acquired</param>
-        /// <exception cref="ArgumentException">Error thrown if not lootable</exception>
         public void Loot(WorldObject obj)
         {
             if (obj.Lootable == false)

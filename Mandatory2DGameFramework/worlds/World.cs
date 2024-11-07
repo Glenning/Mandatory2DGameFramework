@@ -16,7 +16,7 @@ namespace Mandatory2DGameFramework.worlds
 
         private List<WorldObject> _worldObjects;
         private List<Creature> _creatures;
-        private static readonly MyLogger Logger = new MyLogger();
+        private static readonly MyLogger Logger = MyLogger.Instance;
 
         public World()
         {

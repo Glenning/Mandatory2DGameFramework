@@ -10,25 +10,31 @@ namespace Mandatory2DGameFramework
     public class MyLogger
     {
         private const string logname = "GAMELOG";
+        private TraceSource? tSource;
 
-        public void StartGamelog()
+        private MyLogger()
         {
-            TraceSource tSource = new TraceSource(logname);
-            tSource.Switch = new SourceSwitch(logname, SourceLevels.Information.ToString());
-
-            tSource.Listeners.Add(new ConsoleTraceListener());
+            tSource = new TraceSource(logname);
+            tSource.Switch = new SourceSwitch(logname, SourceLevels.All.ToString());
 
             tSource.Listeners.Add(
-                new TextWriterTraceListener($"{logname}.txt")
-                {
-                    Filter = new EventTypeFilter(SourceLevels.Error)
-                });
+                new TextWriterTraceListener($"{logname}.txt"));
+        }
 
-            tSource.Listeners.Add(new XmlWriterTraceListener($"{logname}.xml"));
+        private static readonly MyLogger lInstance = new MyLogger();
+        public static MyLogger Instance => lInstance;
 
-            tSource.TraceEvent(TraceEventType.Error, 700, "Message: Something went wrong");
-            tSource.TraceEvent(TraceEventType.Critical, 700, "Message: Critical error occurred");
-            tSource.Close();
+        public void AddListener(TraceListener listener)
+        {
+            tSource?.Listeners.Add(listener);
+        }
+        public void RemoveListener(TraceListener listener)
+        {
+            tSource?.Listeners.Remove(listener);
+        }
+        public void LogInfo(string msg)
+        {
+            tSource?.TraceEvent(TraceEventType.Information, 200, msg);
         }
     }
 }
