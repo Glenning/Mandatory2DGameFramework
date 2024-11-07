@@ -13,7 +13,7 @@ using Mandatory2DGameFramework.model.CreatureState;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public class Creature : WorldObject
+    public class Creature : WorldObject, INotifyPropertyChanged
     {
         public string CreatureName { get; set; }
         public int HitPoint { get; set; }
@@ -21,6 +21,8 @@ namespace Mandatory2DGameFramework.model.Cretures
         public DefenceItem DefenceItem { get; set; }
         private ICreatureState CreatureState { get; set; }
         private static readonly MyLogger DeathLogger = MyLogger.Instance;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Creature constructor

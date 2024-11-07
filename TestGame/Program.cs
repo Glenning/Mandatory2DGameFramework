@@ -1,4 +1,5 @@
-﻿using Mandatory2DGameFramework.model.Creatures;
+﻿using Mandatory2DGameFramework;
+using Mandatory2DGameFramework.model.Creatures;
 using Mandatory2DGameFramework.model.Cretures;
 
 Console.WriteLine("This is a test environment");
@@ -27,3 +28,5 @@ while (Krigeren.HitPoint > 0 && Modstanderen.HitPoint > 0)
         break;
     }
 }
+
+ConfigReader.Initialize("C:\\Users\\glenn\\source\\repos\\Sem4\\Mandatory2DGameFramework\\Mandatory2DGameFramework\\WorldConfig.xml");
